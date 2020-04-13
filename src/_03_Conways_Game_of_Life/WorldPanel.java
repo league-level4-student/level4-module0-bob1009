@@ -37,7 +37,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// passing in the location.
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[i].length; j++) {
-				cells[i][j] = new Cell(i, j, cellSize);
+				cells[i][j] = new Cell(j*cellSize, i*cellSize, cellSize);
 			}
 		}
 	}
@@ -122,7 +122,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 				counter += 1;
 			}
 		}
-		if (x<ConwaysGameOfLife.WIDTH) {
+		if (x < ConwaysGameOfLife.WIDTH) {
 			if (cells[x + 1][y].isAlive == true) {
 				counter += 1;
 			}
@@ -137,22 +137,22 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 				counter += 1;
 			}
 		}
-		if (x > 0 && y<ConwaysGameOfLife.HEIGHT) {
+		if (x > 0 && y < ConwaysGameOfLife.HEIGHT) {
 			if (cells[x - 1][y + 1].isAlive == true) {
 				counter += 1;
 			}
 		}
-		if (x < ConwaysGameOfLife.WIDTH && y<ConwaysGameOfLife.HEIGHT) {
+		if (x < ConwaysGameOfLife.WIDTH && y < ConwaysGameOfLife.HEIGHT) {
 			if (cells[x + 1][y + 1].isAlive == true) {
 				counter += 1;
 			}
 		}
-		if (x > 0 && y>0) {
+		if (x > 0 && y > 0) {
 			if (cells[x - 1][y - 1].isAlive == true) {
 				counter += 1;
 			}
 		}
-		if (x > ConwaysGameOfLife.WIDTH && y<0) {
+		if (x > ConwaysGameOfLife.WIDTH && y < 0) {
 			if (cells[x + 1][y - 1].isAlive == true) {
 				counter += 1;
 			}
@@ -182,8 +182,8 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 10. Use e.getX() and e.getY() to determine
 		// which cell is clicked. Then toggle
 		// the isAlive variable for that cell.
-		int cellnum=e.getX()/cellSize;
-		int cellnum2=e.getY()/cellSize;
+		int cellnum = e.getX() / cellSize;
+		int cellnum2 = e.getY() / cellSize;
 		repaint();
 	}
 
