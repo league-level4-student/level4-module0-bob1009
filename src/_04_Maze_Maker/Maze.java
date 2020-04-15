@@ -12,11 +12,11 @@ Cell[][]cells;
 		this.height = h;
 
 		//2. Initialize the cells using the width and height varibles
-		cells=new Cell[width][height];
+		cells=new Cell[w][h];
 		//3. Iterated through each cell and initialize it
 		//   using i and j as the location
-		for (int i = 0; i < cells.length; i++) {
-			for (int j = 0; j < cells[i].length; j++) {
+		for (int i = 0; i < w; i++) {
+			for (int j = 0; j < h; j++) {
 				cells[i][j]=new Cell(i, j);
 			}
 		}

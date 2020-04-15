@@ -27,6 +27,7 @@ public class MazeDisplay extends JPanel{
 		window.pack();
 		
 		maze = MazeMaker.generateMaze(5, 5);
+		
 		repaint();
 	}
 	
