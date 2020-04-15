@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Stack;
 
 
+
 public class MazeMaker{
 	
 	private static int width;
@@ -22,10 +23,11 @@ public class MazeMaker{
 		maze = new Maze(width, height);
 		
 		//4. select a random cell to start
-		
-		
+		int ranx= randGen.nextInt();
+		int rany= randGen.nextInt();
+		Cell rancell=maze.getCell(ranx, rany);
 		//5. call selectNextPath method with the randomly selected cell
-		
+		selectNextPath(rancell);
 		
 		return maze;
 	}
@@ -33,10 +35,25 @@ public class MazeMaker{
 	//6. Complete the selectNextPathMethod
 	private static void selectNextPath(Cell currentCell) {
 		//A. mark cell as visited
-
+		currentCell.setBeenVisited(true);
 		//B. Get an ArrayList of unvisited neighbors using the current cell and the method below
-		
+		ArrayList<Cell> list=getUnvisitedNeighbors(currentCell);
 		//C. if has unvisited neighbors,
+		if (list.size()>0) {
+			Cell hold=list.get(randGen.nextInt());
+			uncheckedCells.push(hold);
+			removeWalls(currentCell, hold);
+			currentCell=hold;
+			currentCell.setBeenVisited(true);
+			selectNextPath(currentCell);
+			}
+		else {
+			if (uncheckedCells.size()>0) {
+				Cell popped=uncheckedCells.pop();
+				currentCell=popped;
+				selectNextPath(currentCell);
+			}
+		}
 		
 			//C1. select one at random.
 			
@@ -67,13 +84,35 @@ public class MazeMaker{
 	//   This method will check if c1 and c2 are adjacent.
 	//   If they are, the walls between them are removed.
 	private static void removeWalls(Cell c1, Cell c2) {
-		
+		if (c1.getX()==c2.getX()) {
+			if (c1.getY()>c2.getY()) {
+				c1.setNorthWall(false);
+				c2.setSouthWall(false);
+			}
+			else {
+				c1.setSouthWall(false);
+				c2.setNorthWall(false);
+			}
+		}
+		else {
+			if (c1.getY()>c2.getY()) {
+				c1.setWestWall(false);
+				c2.setEastWall(false);
+			}
+			else {
+				c1.setEastWall(false);
+				c2.setWestWall(false);
+			}
+		}
 	}
 	
 	//8. Complete the getUnvisitedNeighbors method
 	//   Any unvisited neighbor of the passed in cell gets added
 	//   to the ArrayList
 	private static ArrayList<Cell> getUnvisitedNeighbors(Cell c) {
+	
 		return null;
+		}
+		
 	}
-}
+

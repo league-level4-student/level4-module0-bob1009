@@ -122,7 +122,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 				counter += 1;
 			}
 		}
-		if (x < ConwaysGameOfLife.WIDTH) {
+		if (x < cells.length-1) {
 			if (cells[x + 1][y].isAlive == true) {
 				counter += 1;
 			}
@@ -132,17 +132,17 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 				counter += 1;
 			}
 		}
-		if (y < ConwaysGameOfLife.HEIGHT) {
+		if (y < cells.length-1) {
 			if (cells[x][y + 1].isAlive == true) {
 				counter += 1;
 			}
 		}
-		if (x > 0 && y < ConwaysGameOfLife.HEIGHT) {
+		if (x > 0 && y < cells.length-1) {
 			if (cells[x - 1][y + 1].isAlive == true) {
 				counter += 1;
 			}
 		}
-		if (x < ConwaysGameOfLife.WIDTH && y < ConwaysGameOfLife.HEIGHT) {
+		if (x < cells.length-1 && y <cells.length-1) {
 			if (cells[x + 1][y + 1].isAlive == true) {
 				counter += 1;
 			}
@@ -152,12 +152,12 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 				counter += 1;
 			}
 		}
-		if (x > ConwaysGameOfLife.WIDTH && y < 0) {
+		if (x > cells.length && y < 0) {
 			if (cells[x + 1][y - 1].isAlive == true) {
 				counter += 1;
 			}
 		}
-		return 0;
+		return counter;
 	}
 
 	@Override
@@ -184,6 +184,12 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// the isAlive variable for that cell.
 		int cellnum = e.getX() / cellSize;
 		int cellnum2 = e.getY() / cellSize;
+		if (cells[cellnum][cellnum2].isAlive==false) {
+			cells[cellnum][cellnum2].isAlive=true;
+		}
+		else {
+			cells[cellnum][cellnum2].isAlive=false;
+		}
 		repaint();
 	}
 

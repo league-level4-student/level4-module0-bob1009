@@ -28,16 +28,15 @@ public class Cell implements Drawable {
 	 * neighbours becomes a live cell, as if by reproduction. (source: Wikipedia)
 	 */
 	public void liveOrDie(int numNeighbors) {
-		if (isAlive = true && numNeighbors < 2) {
+		if (isAlive == true && numNeighbors < 2) {
 			isAlive = false;
-		}
-		if (isAlive = true && numNeighbors == 2) {
+		} else if (isAlive == true && numNeighbors == 2) {
 			isAlive = true;
-		}
-		if (isAlive = true && numNeighbors == 3) {
+		} else if (isAlive == true && numNeighbors == 3) {
 			isAlive = true;
-		}
-		if (isAlive = false && numNeighbors == 3) {
+		} else if (isAlive == true && numNeighbors > 3) {
+			isAlive = false;
+		} else if (isAlive == false && numNeighbors == 3) {
 			isAlive = true;
 		}
 	}
@@ -59,8 +58,7 @@ public class Cell implements Drawable {
 			g.setColor(Color.PINK);
 			g.fillRect(x, y, cellSize, cellSize);
 
-		}
-		else {
+		} else {
 			g.setColor(Color.DARK_GRAY);
 			g.clearRect(x, y, cellSize, cellSize);
 		}
